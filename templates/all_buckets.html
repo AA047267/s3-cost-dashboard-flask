@@ -1,0 +1,88 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+  <style>
+    .my-custom-scrollbar {
+      position: relative;
+      height: 250px;
+      overflow: auto;
+      margin-top: 5%;
+    }
+    .table-wrapper-scroll-y {
+      display: block;
+    }
+    .table-wrapper-scroll-y .table th {
+      background-color: rgb(55, 133, 133);
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .jumbotron .btn {
+      border-radius: 10px;
+    }
+
+    .jumbotron .btn:hover {
+      font-size: 150%;
+    }
+
+    input[type=text] {
+      width: 30%;
+      color: black;
+      padding: 14px 20px;
+      margin: 8px 0;
+      margin-left: 70%;
+      border: black;
+      border-radius: 10px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 100%;
+      font-weight: bold;
+    }
+
+    .header {
+      margin-top: -65px;
+    }
+
+
+
+
+
+  </style>
+
+  
+
+  <div class="input-search">
+    <form action =  "/fetch_bucket" method="post">
+        <input type=text name="name" placeholder="Search Bucket...">
+    </form> 
+  </div> 
+  
+  <div class="header">
+    <h2>All Buckets</h2>
+  </div>
+
+
+  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-bordered table-striped mb-0">
+      <tr>
+        <th>Name</th>
+        <th>Size(GB)</th>
+        <th>Cost Per Month($)</th>
+      </tr>
+      {% for row in rows %}
+        <tr>
+          <td>{{row.name}}</td>
+          <td>{{row.size}}</td>
+          <td>{{row.cost}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <br><br><br>
+
+  <div class="jumbotron text-center">
+    <a href="/categories" class="btn btn-primary btn-lg">Back</a>
+  </div>
+
+  
+{% endblock %}

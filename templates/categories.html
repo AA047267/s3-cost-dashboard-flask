@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+
+
+{% block body %}
+
+  <style>
+    .jumbotron .btn {
+      margin: 1%;
+      border-radius: 10px;
+    }
+    .jumbotron .btn:hover {
+      background-color: rgb(40, 82, 158);
+      font-size: 110%;
+    }
+    .jumbotron .btn-success:hover {
+      background-color: rgb(42, 173, 123);
+      font-size: 150%;
+    }
+  </style>
+
+
+  <div class="jumbotron text-center">
+    <h2>Categories</h2>
+    <br>
+    <br>
+    <a href="/all_buckets" class="btn btn-success btn-lg">All Buckets</a>
+    <a href="/devops" class="btn btn-primary btn-lg">DevOps</a>
+    <a href="/platform" class="btn btn-primary btn-lg">Platform</a>
+    <a href="/processing" class="btn btn-primary btn-lg">Processing</a>
+    <a href="/jarvis" class="btn btn-primary btn-lg">Jarvis</a>
+  </div>
+
+
+{% endblock %}
