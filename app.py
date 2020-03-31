@@ -35,6 +35,14 @@ def all_buckets():
     return render_template('all_buckets.html', rows = rows)
     cur.close()
 
+@app.route('/dm')
+def dm_buckets():
+    cur = mysql.connection.cursor()
+    result = cur.execute("SELECT * FROM dm_bucket_size")
+    rows = cur.fetchall()
+    return render_template('dm_buckets.html', rows = rows)
+    cur.close()
+
 @app.route("/fetch_bucket", methods=["GET", "POST"])
 def fetch_bucket_info():
     if request.method == "POST":
@@ -42,6 +50,16 @@ def fetch_bucket_info():
         print(name)
         cur = mysql.connection.cursor()
         fetch = cur.execute("SELECT * FROM s3_bucket_size WHERE name = %s", [name])
+        one_bucket = cur.fetchone()
+        return render_template("bucket_search.html", one_bucket=one_bucket) 
+
+@app.route("/fetch_dm_bucket", methods=["GET", "POST"])
+def fetch_dm_bucket_info():
+    if request.method == "POST":
+        name = request.form["name"]
+        print(name)
+        cur = mysql.connection.cursor()
+        fetch = cur.execute("SELECT * FROM dm_bucket_size WHERE name = %s", [name])
         one_bucket = cur.fetchone()
         return render_template("bucket_search.html", one_bucket=one_bucket) 
     
